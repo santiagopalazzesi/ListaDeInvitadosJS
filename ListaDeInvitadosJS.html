@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>INVITADOS</title>
+    <style>
+      body {
+        background: lightblue;
+      }
+      .verde {
+        color: green;
+      }
+    </style>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div id="saludos"></div>
+    <input type="text" id="entrada" /> <br />
+    <button id="btn">Añadir</button>
+    <p id="cantidades"></p>
+    <p id="asistieron"></p>
+
+    <script>
+      let CantidadDeSaludos = 0;
+      let CantidadDeAsistentes = 0;
+      let título = document.getElementById('saludo');
+      let entradaLoca = document.getElementById('entrada');
+      let btn = document.getElementById('btn');
+      let contenedor = document.getElementById('saludos');
+      let cantidades = document.getElementById('cantidades');
+      let asistieron = document.getElementById('asistieron');
+
+      btn.addEventListener('click', function () {
+        CantidadDeSaludos++;
+        let tipo = entradaLoca.value;
+        entradaLoca.value = ' ';
+        if (tipo != '') {
+          let saludito = 'Invitado: ' + tipo;
+          var sal = document.createElement('h1');
+          var txt = document.createTextNode(saludito);
+          sal.appendChild(txt);
+          contenedor.appendChild(sal);
+          cantidades.innerHTML = 'Tenemos ' + CantidadDeSaludos + ' invitados';
+          if (CantidadDeSaludos > 1) {
+            cantidades.innerHTML =
+              'Tenemos ' + CantidadDeSaludos + ' invitados';
+          } else {
+            cantidades.innerHTML = 'Tenemos ' + CantidadDeSaludos + ' invitado';
+          }
+        }
+      });
+      document.addEventListener('click', function (e) {
+        if (e.target.localName == 'h1' && e.target.classList.value != 'verde') {
+          e.target.innerHTML = e.target.innerHTML + ' asistió';
+          e.target.classList.add('verde');
+          CantidadDeAsistentes++;
+          asistieron.innerHTML = 'asistencias: ' + CantidadDeAsistentes;
+        }
+      });
+    </script>
+  </body>
+</html>
